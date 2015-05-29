@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="author" content="Michael Lee">
+<title>Michael Lee's Home Page</title>
+<link type="text/css" href="home.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="header">Michael Lee's Home Page</div>
+
+<div id="quick_links">
+	<p class="sect_name">Quick Links</p>
+	<ul>
+		<li><a href="https://mail.google.com/">Gmail</a></li>
+		<li><a href="https://login.facebook.com/login.php">Facebook</a></li>
+		<li><a href="https://www.linkedin.com/uas/login">LinkedIn</a></li>
+		<li><a href="http://www.hko.gov.hk/contentc.htm">香港天氣</a></li>
+		<li><a href="http://www.openrice.com/">OpenRice</a>
+		<li><a href="http://www.aastocks.com/tc/market/HKIndex.aspx">AAStocks</a>
+	</ul>
+</div>
+
+<div id="main">
+
+	<p><span class="sect_name"><a href="guide/index.html">Guide to Classical Music in Hong Kong</a></span><br>
+	<p>A concise guide to the classical music scene in Hong Kong. Topics covered include concert-going, venues, festivals, orchestras, record stores, etc.
+
+	<p><span class="sect_name"><a href="concerts/concerts2015.html">Concert Schedule</a></span><br>
+	</p>List of past concerts that I have attended and upcoming concerts that will attend.
+
+	<p><span class="sect_name">Links</span>:
+		<a href="links/news.html">News</a> |
+		<a href="links/music.html">Music</a> |
+		<a href="links/tech.html">Tech</a> |
+		<a href="links/audio.html">Audio</a> |
+		<a href="links/others.html">Others</a>
+	<br>
+	<p>My home page was originally just a collection of links to my favourite web sites. They are now organized into different sections.
+
+	<!-- Begin search form -->
+	<form name="f" action="#" onsubmit="doSearch(false);return false">
+	<div>
+	<input type="text" name="q" size="40" maxlength="2048">
+	<select name="t" onchange="doSearch(true)">
+	<option value="g">Google</option>
+	<option value="w">Wikipedia</option>
+	<option value="t">YouTube</option>
+	<option value="d">Google Definitions</option>
+	<option value="y">Yahoo! 字典</option>
+	<option value="m">MDT</option>
+	<option value="p">Presto Classical</option>
+	</select>
+	<input type="submit" value="Search">
+	</div>
+	</form>
+
+	<script type="text/javascript">
+
+		function trim(str)
+		{
+			return str == null ? "" : str.toString().replace(/^[\s\xA0]+/, "").replace(/[\s\xA0]+$/, "");
+		}
+
+		function doSearch(notEmpty)
+		{
+			var str = trim(document.f.q.value);
+
+			if (notEmpty && str == "")
+				return;
+
+			var obj = document.f.t;
+			var engine = obj.options[obj.selectedIndex].value;
+
+			var uri = "";
+			switch (engine)
+			{
+			case "y":
+				uri = "https://hk.dictionary.yahoo.com/dictionary?p=";
+				break;
+			case "w":
+				uri = "https://www.google.com.hk/search?hl=en&q=site%3Awikipedia.org+";
+				break;
+			case "d":
+				uri = "https://www.google.com.hk/search?hl=en&q=define%3A+";
+				break;
+			case "t":
+				uri = "https://www.youtube.com/results?search_query=";
+				break;
+			case "m":
+				uri = "http://www.mdt.co.uk/catalogsearch/result/?t=general&q=";
+				break;
+			case "p":
+				uri = "http://www.prestoclassical.co.uk/search.php?searchString=";
+				break;
+			default:
+				uri = "https://www.google.com.hk/search?hl=en&q=";
+			}
+
+			window.location = uri + encodeURIComponent(str);
+		}
+
+		// Do not focus on search box if user agent is on mobile device
+		if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			document.body.setAttribute('onload', 'document.f.q.focus()');
+		}
+
+	</script>
+	<!-- End search form -->
+
+</div>
+
+<div id="footer">&copy; 2014 JKML</div>
+
+</body>
+</html>

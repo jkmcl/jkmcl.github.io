@@ -1,0 +1,47 @@
+body {
+	background: #F5F5F5;
+	text-align: left;
+	font: small Arial, Helvetica, sans-serif;
+	width: 780px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table { border-collapse: collapse; }
+a { color: #0000FF; text-decoration: none; }
+a:hover { color: #FF0000; text-decoration: underline; }
+
+/* Menu section */
+#menu {
+	padding-bottom: 1em;
+	border-bottom: 1px solid #C0C0C0;
+}
+#menu_left { float: left; }
+#menu_right { float: right; }
+
+/* Concert list style */
+table.concert_list {
+	width: 100%;
+	background-color: #FFFFCC;
+}
+table.concert_list th, table.concert_list td {
+	vertical-align: top;
+	border: 1px solid #000000;
+	padding: 0.5em;
+}
+table.concert_list th {
+	background-color: #C0C0C0;
+	font-weight: bold;
+}
+
+.title { font-weight: bold; font-size: medium; }
+
+
+/* For mobile */
+@media only screen and (max-device-width: 800px) {
+	body {
+		width: auto;
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+}

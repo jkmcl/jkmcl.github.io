@@ -1,0 +1,44 @@
+body, td { font: 10pt Arial, Helvetica, sans-serif }
+
+table {
+	width: 720px;
+	margin-left: auto; margin-right: auto;
+}
+col.menu { width: 20% }
+col.content { }
+
+li { list-style-position: inside; }
+
+td { padding: 0.5em; vertical-align: top }
+a {	color: blue; text-decoration: none }
+a:hover { color: red; text-decoration: underline }
+.title { font-weight: bold; font-size: 12pt }
+.note { font-size: 8pt; color: #999999; text-align: center; line-height: 1.75em }
+
+/* Logo cell */
+td.logo {
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* Title cell */
+td.title {
+	vertical-align: middle;
+	font-size: 14pt;
+}
+
+/* Menu cell */
+td.menu {
+	padding-top: 0em;
+}
+div.menu {
+	border: 1px solid #999999;
+	padding: 1em;
+	line-height: 2em;
+}
+
+/* Content cell */
+td.content {
+	border-top: 1px solid #999999;
+	padding: 1em;
+}
