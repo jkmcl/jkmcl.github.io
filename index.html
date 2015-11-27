@@ -15,7 +15,7 @@
 	<p class="sect_name">Quick Links</p>
 	<ul>
 		<li><a href="https://mail.google.com/">Gmail</a></li>
-		<li><a href="https://login.facebook.com/login.php">Facebook</a></li>
+		<li><a href="https://www.facebook.com/">Facebook</a></li>
 		<li><a href="https://web.whatsapp.com/">WhatsApp</a></li>
 		<li><a href="https://feedly.com/">Feedly</a></li>
 		<li><a href="http://www.hko.gov.hk/contentc.htm">香港天氣</a></li>
@@ -69,8 +69,9 @@
 		{
 			var str = trim(document.f.q.value);
 
-			if (notEmpty && str == "")
+			if (notEmpty && str == "") {
 				return;
+			}
 
 			var obj = document.f.t;
 			var engine = obj.options[obj.selectedIndex].value;
