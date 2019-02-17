@@ -1,16 +1,28 @@
-function changePage(selectObj)
-{
-	var value = selectObj.options[selectObj.selectedIndex].value;
-	if (!value) {
-		value = selectObj.options[selectObj.selectedIndex].text;
+function createOption(text, value) {
+	var option = document.createElement("option");
+	option.text = text;
+	if (value) {
+		option.value = value;
 	}
-	window.location.href="concerts"+value+".html";
+	return option;
 }
 
-var opts = "<option>Please select...</option>";
-for (var i = 2019; i >= 1999; --i) {
-	opts += "<option>" + i + "</option>";
-}
-opts += '<option value="199x">Earlier</option>';
+window.onload = function() {
+	var select = document.getElementById("yearSelect");
 
-document.write('<select onchange="changePage(this)">' + opts + '</select>');
+	// Populate options
+	select.add(createOption("Please select..."));
+	for (var i = 2019; i >= 1999; --i) {
+		select.add(createOption(i));
+	}
+	select.add(createOption("Earlier", "199x"));
+
+	// Add event listener
+	select.onchange = function() {
+		var value = select.options[select.selectedIndex].value;
+		if (!value) {
+			value = select.options[select.selectedIndex].text;
+		}
+		window.location.href = "concerts" + value + ".html";
+	}
+}
