@@ -12,7 +12,7 @@ window.onload = function() {
 
 	// Populate options
 	select.add(createOption("Please select..."));
-	for (var i = 2020; i >= 1999; --i) {
+	for (var i = 2021; i >= 1999; --i) {
 		select.add(createOption(i));
 	}
 	select.add(createOption("Earlier", "199x"));
