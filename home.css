@@ -1,29 +1,48 @@
 body, input, select, button {
-	background: #F5F5F5;
 	text-align: left;
 	font: medium Arial, Helvetica, sans-serif;
-	max-width: 780px;
+	max-width: 800px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-a { color: #0000FF; text-decoration: none }
-a:hover { color: #FF0000; text-decoration: underline }
+input, select, button { border: 1px solid; }
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
 
 .header { font-weight: bold; }
 
-.main { 
-	padding-top: 1em; 
+.main {
+	padding-top: 1em;
 	padding-bottom: 1em;
 }
 
 .footer { font-size: 0.75em; }
 
 /* For mobile */
-@media only screen and (max-device-width: 800px) {
+@media only screen and (max-width: 800px) {
 	body {
 		width: auto;
 		margin-left: 1em;
 		margin-right: 1em;
 	}
+}
+
+@media (prefers-color-scheme: light) {
+	body, input, select, button {
+		background: #ffffff;
+		color: #202124;
+	}
+
+	a { color: #1a0dab; }
+}
+
+@media (prefers-color-scheme: dark) {
+	body, input, select, button {
+		background: #202124;
+		color: #bdc1c6;
+	}
+
+	a { color: #8ab4f8; }
 }
