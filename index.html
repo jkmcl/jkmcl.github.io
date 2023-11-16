@@ -11,7 +11,7 @@
 <div class="main">
 
 	<!-- Begin search form -->
-	<form name="f" action="#" onsubmit="doSearch(false);return false">
+	<form name="f" action="#" onsubmit="doSearch(false); return false">
 	<div>
 	<input type="text" name="q" size="32" maxlength="2048">
 	<select name="t" onchange="doSearch(true)">
@@ -28,42 +28,39 @@
 
 	<script>
 
-		function trim(str)
-		{
+		function trim(str) {
 			return str == null ? "" : str.toString().replace(/^[\s\xA0]+/, "").replace(/[\s\xA0]+$/, "");
 		}
 
-		function doSearch(notEmpty)
-		{
-			var str = trim(document.f.q.value);
+		function doSearch(notEmpty) {
+			const str = trim(document.f.q.value);
 
 			if (notEmpty && str == "") {
 				return;
 			}
 
-			var obj = document.f.t;
-			var engine = obj.options[obj.selectedIndex].value;
+			const obj = document.f.t;
+			const engine = obj.options[obj.selectedIndex].value;
 
-			var uri = "";
-			switch (engine)
-			{
-			case "y":
-				uri = "https://hk.dictionary.search.yahoo.com/search?p="
-				break;
-			case "w":
-				uri = "https://www.google.com.hk/search?hl=en&q=site%3Awikipedia.org+";
-				break;
-			case "d":
-				uri = "https://www.google.com.hk/search?hl=en&q=define%3A+";
-				break;
-			case "t":
-				uri = "https://www.youtube.com/results?search_query=";
-				break;
-			case "p":
-				uri = "https://www.prestomusic.com/classical/search?search_query=";
-				break;
-			default:
-				uri = "https://www.google.com.hk/search?hl=en&q=";
+			let uri = "";
+			switch (engine) {
+				case "y":
+					uri = "https://hk.dictionary.search.yahoo.com/search?p="
+					break;
+				case "w":
+					uri = "https://www.google.com.hk/search?hl=en&q=site%3Awikipedia.org+";
+					break;
+				case "d":
+					uri = "https://www.google.com.hk/search?hl=en&q=define%3A+";
+					break;
+				case "t":
+					uri = "https://www.youtube.com/results?search_query=";
+					break;
+				case "p":
+					uri = "https://www.prestomusic.com/classical/search?search_query=";
+					break;
+				default:
+					uri = "https://www.google.com.hk/search?hl=en&q=";
 			}
 
 			window.location = uri + encodeURIComponent(str);
@@ -89,26 +86,7 @@
 		<a href="https://www.openrice.com/zh/hongkong">OpenRice</a>
 	</p>
 
-	<p class="header">COVID-19 Information</p>
-	<p>
-		<a href="https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">Johns Hopkins</a>
-		(<a href="https://www.arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c06e61">mobile</a>) |
-		<a href="https://www.bing.com/covid">Microsoft</a> |
-		<a href="https://experience.arcgis.com/experience/685d0ace521648f8a5beeeee1b9125cd">WHO</a> |
-		<a href="https://www.ft.com/coronavirus-latest">FT</a>
-	</p>
-	<p>
-		香港政府:
-		<a href="https://www.coronavirus.gov.hk/chi/index.html">專題網站</a> |
-		<a href="https://chp-dashboard.geodata.gov.hk/covid-19/zh.html">互動地圖</a> |
-		<a href="https://www.info.gov.hk/gia/general/ctoday.htm">即日新聞公報</a> |
-		<!--
-		<a href="https://www.chp.gov.hk/tc/features/105294.html">強制檢測公告</a> |
-		-->
-		<a href="https://www.chp.gov.hk/tc/media/116/index.html">衞生防護中心新聞稿</a>
-	</p>
-
-	<p class="header">Other Links</p>
+	<p class="header">Link Collections</p>
 	<p>
 		<a href="links/news.html">News</a> |
 		<a href="links/music.html">Music</a> |
