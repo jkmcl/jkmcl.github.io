@@ -11,66 +11,59 @@
 <div class="main">
 
 	<!-- Begin search form -->
-	<form id="id-form-search">
 	<div>
-	<input type="text" id="id-input-query" size="32" maxlength="2048">
-	<select id="id-select-engine">
-	<option value="g">Google</option>
-	<option value="w">Wikipedia</option>
-	<option value="t">YouTube</option>
-	<option value="d">Google Definitions</option>
-	<option value="y">Yahoo! 字典</option>
-	<option value="p">Presto Classical</option>
-	</select>
-	<button>Search</button>
+		<input id="id-input1" size="32">
+		<select id="id-select1"></select>
+		<button id="id-button1">Search</button>
 	</div>
-	</form>
 
 	<script>
 		"use strict";
 
-		document.getElementById("id-form-search").addEventListener("submit", (event) => {
-			event.preventDefault();
-			doSearch(true);
-		});
-
-		const input1 = document.getElementById("id-input-query");
-		// Focus on search input if user agent is not mobile browser
-		if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+		const input1 = document.getElementById("id-input1");
+		input1.addEventListener("keydown", (event) => {
+			if (event.key === "Enter") {
+				doSearch(true);
+			}
+		})
+		// Focus on input only if device has no touch screen to prevent triggering virtual keyboard
+		if (!hasTouchPoint()) {
 			window.addEventListener("load", () => input1.focus());
 		}
 
-		const select1 = document.getElementById("id-select-engine");
+		const sites = [
+			{ name: "Google", home: "https://www.google.com/", search: "search?hl=en&q=" },
+			{ name: "Wikipedia", home: "https://en.wikipedia.org/", search: "w/index.php?search=" },
+			{ name: "YouTube", home: "https://www.youtube.com/", search: "results?search_query=" },
+			{ name: "Yahoo香港字典", home: "https://hk.dictionary.search.yahoo.com/", search: "search?p=" },
+		];
+
+		const select1 = document.getElementById("id-select1");
+		for (const site of sites) {
+			const option = document.createElement("option");
+			option.text = site.name;
+			select1.add(option);
+		}
 		select1.addEventListener("change", () => doSearch(false));
+
+		document.getElementById("id-button1").addEventListener("click", () => doSearch(true));
+
+		// See https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent
+		function hasTouchPoint() {
+			if ("maxTouchPoints" in navigator) {
+				return navigator.maxTouchPoints > 0;
+			} else if ("msMaxTouchPoints" in navigator) {
+				return navigator.msMaxTouchPoints > 0;
+			}
+			return false;
+		}
 
 		function doSearch(allowEmptyQuery) {
 			const query = input1.value.trim();
-			if (!allowEmptyQuery && query == "") {
-				return;
+			if (allowEmptyQuery || query != "") {
+				const site = sites[select1.selectedIndex]
+				window.location.href = (query == "") ? site.home : site.home + site.search + encodeURIComponent(query);
 			}
-
-			let uri = "";
-			switch (select1.options[select1.selectedIndex].value) {
-				case "y":
-					uri = "https://hk.dictionary.search.yahoo.com/search?p="
-					break;
-				case "w":
-					uri = "https://www.google.com.hk/search?hl=en&q=site%3Awikipedia.org+";
-					break;
-				case "d":
-					uri = "https://www.google.com.hk/search?hl=en&q=define%3A+";
-					break;
-				case "t":
-					uri = "https://www.youtube.com/results?search_query=";
-					break;
-				case "p":
-					uri = "https://www.prestomusic.com/classical/search?search_query=";
-					break;
-				default:
-					uri = "https://www.google.com.hk/search?hl=en&q=";
-			}
-
-			window.location.href = uri + encodeURIComponent(query);
 		}
 	</script>
 	<!-- End search form -->
