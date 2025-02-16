@@ -11,10 +11,10 @@
 <div class="main">
 
 	<!-- Begin search form -->
-	<form name="f" action="#" onsubmit="doSearch(false); return false">
+	<form id="id-form-search">
 	<div>
-	<input type="text" name="q" size="32" maxlength="2048">
-	<select name="t" onchange="doSearch(true)">
+	<input type="text" id="id-input-query" size="32" maxlength="2048">
+	<select id="id-select-engine">
 	<option value="g">Google</option>
 	<option value="w">Wikipedia</option>
 	<option value="t">YouTube</option>
@@ -27,23 +27,30 @@
 	</form>
 
 	<script>
+		"use strict";
 
-		function trim(str) {
-			return str == null ? "" : str.toString().replace(/^[\s\xA0]+/, "").replace(/[\s\xA0]+$/, "");
+		document.getElementById("id-form-search").addEventListener("submit", (event) => {
+			event.preventDefault();
+			doSearch(true);
+		});
+
+		const input1 = document.getElementById("id-input-query");
+		// Focus on search input if user agent is not mobile browser
+		if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+			window.addEventListener("load", () => input1.focus());
 		}
 
-		function doSearch(notEmpty) {
-			const str = trim(document.f.q.value);
+		const select1 = document.getElementById("id-select-engine");
+		select1.addEventListener("change", () => doSearch(false));
 
-			if (notEmpty && str == "") {
+		function doSearch(allowEmptyQuery) {
+			const query = input1.value.trim();
+			if (!allowEmptyQuery && query == "") {
 				return;
 			}
 
-			const obj = document.f.t;
-			const engine = obj.options[obj.selectedIndex].value;
-
 			let uri = "";
-			switch (engine) {
+			switch (select1.options[select1.selectedIndex].value) {
 				case "y":
 					uri = "https://hk.dictionary.search.yahoo.com/search?p="
 					break;
@@ -63,14 +70,8 @@
 					uri = "https://www.google.com.hk/search?hl=en&q=";
 			}
 
-			window.location = uri + encodeURIComponent(str);
+			window.location.href = uri + encodeURIComponent(query);
 		}
-
-		// Do not focus on search box if user agent is on mobile device
-		if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-			document.body.setAttribute('onload', 'document.f.q.focus()');
-		}
-
 	</script>
 	<!-- End search form -->
 
@@ -99,7 +100,7 @@
 
 </div>
 
-<div class="footer">&copy; 2024 JKML</div>
+<div class="footer">© 2025 JKML</div>
 
 </body>
 </html>
