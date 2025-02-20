@@ -21,11 +21,11 @@
 		"use strict";
 
 		const input1 = document.getElementById("id-input1");
-		input1.addEventListener("keydown", (event) => {
+		input1.addEventListener("keydown", event => {
 			if (event.key === "Enter") {
 				doSearch(true);
 			}
-		})
+		});
 		// Focus on input only if device has no touch screen to prevent triggering virtual keyboard
 		if (!hasTouchPoint()) {
 			window.addEventListener("load", () => input1.focus());
