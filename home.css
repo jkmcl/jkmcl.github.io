@@ -6,7 +6,7 @@ body, input, select, button {
 	margin-right: auto;
 }
 
-input, select, button { border: 1px solid; }
+input, select, button { border: 1px solid; padding: 0.25em; }
 
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
