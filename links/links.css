@@ -47,7 +47,6 @@ div#main {
 /* Flexbox style */
 .columns {
 	display: flex;
-	flex-wrap: wrap;
 	width: 100%;
 }
 .column {
