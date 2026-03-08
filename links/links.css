@@ -44,12 +44,14 @@ div#main {
 	padding: 1em;
 }
 
-/* Link table style */
-table.links_list {
+/* Flexbox style */
+.columns {
+	display: flex;
+	flex-wrap: wrap;
 	width: 100%;
 }
-table.links_list td {
-	width: 50%;
+.column {
+	flex: 1;
 	padding: 0.5em;
 }
 
