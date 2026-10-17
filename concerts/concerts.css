@@ -16,8 +16,6 @@ a:hover { color: #FF0000; text-decoration: underline; }
 	padding-bottom: 1em;
 	border-bottom: 1px solid #C0C0C0;
 }
-#menu_left { float: left; }
-#menu_right { float: right; }
 
 /* Concert list style */
 table.concert_list {
